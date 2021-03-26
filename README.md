@@ -69,33 +69,39 @@ The Backend of Ouber Eats Clone
   - autoScemaFile: true 로 하면 파일을 안만들고 메모리에 저장
   - serverURL/graphql 에 접속하면 플레이 그라운드 실행
 
-- ### 2.3 Object Type
+- #### 2.3 Object Type
 
-  - entity 를 생성 (dto 파일 생성)
+  - entity 를 생성
   - ```javascript
     @ObjectType()
     @Field(returnTypeFunction?: ReturnTypeFunc)
     ```
     이 두 데코레이션을 사용하여 object type 을 만들 수 있다.
 
-- ### 2.4 Arguments
+- #### 2.4 Arguments
 
   - **NestJS는 필요한게 있으면 요청 해야함!**
   - ```javascript
     @Args() : NestJS에게 Argument 를 요청
     ```
 
-- ### 2.5 InputTypes and ArgumentTypes
+- #### 2.5 InputTypes and ArgumentTypes
 
   - ```javascript
     @InputType() : object를 통째로 전달 할 수 있게 해줌
     @ArgsType() : 분리된 값들을 GraphQL argument로 전달해 줄 수 있도록 함
     ```
 
-- ### 2.6 Validating ArgsTypes
+- #### 2.6 Validating ArgsTypes
 
   - class-calidator, class-transformer 설치
   - dto에 value 설정 ex) @IsString
   - app에 pipe 설정 : app.useGlobalPipes(new ValidationPipe())
+
+- #### Summary
+
+  - NestJS에서 GraphQL은 @nestjs/graphql 패키지를 사용하고 apollo-server 기반으로 돌아간다.
+  - schema 는 resolver를 작성하면 자동으로 생성을 해준다.
+  - 기존에 GraphQL 구조를 사용하며 decor 를 사용해 더 간편해졌다.
 
 ---
