@@ -4,8 +4,24 @@ The Backend of Ouber Eats Clone
 
 ## 목차
 
+0. [Project List](#0-Project-List)
 1. [Start Project](#1-Start-Project)
 2. [GraphQL API](#2-GraphQL-API)
+3. [Database Configuration](#3Database-Configuration)
+
+---
+
+## 0. Project List
+
+#### User Model :
+
+- id
+- createdAt
+- updatedAt
+
+- email
+- password
+- role(client | owner | delivery)
 
 ---
 
@@ -105,3 +121,9 @@ The Backend of Ouber Eats Clone
   - 기존에 GraphQL 구조를 사용하며 decor 를 사용해 더 간편해졌다.
 
 ---
+
+## 3. Database Configuration
+
+- [Github URL - Database Configuration](https://github.com/ohbyeongmin/ouber-eats-backend/commit/611bf00b468a920932881d58b6192439da45fa93)
+
+## 4. TypeORM and NEST
