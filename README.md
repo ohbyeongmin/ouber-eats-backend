@@ -8,12 +8,13 @@ The Backend of Ouber Eats Clone
 1. [Start Project](#1-Start-Project)
 2. [GraphQL API](#2-GraphQL-API)
 3. [Database Configuration](#3Database-Configuration)
+4. [TypeORM and NEST](#4-TypeORM-and-NEST)
 
 ---
 
 ## 0. Project List
 
-#### User Model :
+#### User Entity :
 
 - id
 - createdAt
@@ -22,6 +23,14 @@ The Backend of Ouber Eats Clone
 - email
 - password
 - role(client | owner | delivery)
+
+#### User CRUD :
+
+- Create Account
+- Log In
+- See Profile
+- Edit Progile
+- Verify Email
 
 ---
 
@@ -126,4 +135,8 @@ The Backend of Ouber Eats Clone
 
 - [Github URL - Database Configuration](https://github.com/ohbyeongmin/ouber-eats-backend/commit/611bf00b468a920932881d58b6192439da45fa93)
 
+---
+
 ## 4. TypeORM and NEST
+
+- [Github URL - TypeORM and NEST](https://github.com/ohbyeongmin/ouber-eats-backend/commit/8689eb612a1cd8065198a5e4e9adec63ba9bc495)
