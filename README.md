@@ -11,6 +11,7 @@ The Backend of Ouber Eats Clone
 4. [TypeORM and NEST](#4-TypeORM-and-NEST)
 5. [User CRUD](#5-User-CRUD)
 6. [User Authentication](#6-User-Authentication)
+7. [Email Verification](#7-Email-Verification)
 
 ---
 
@@ -145,9 +146,11 @@ The Backend of Ouber Eats Clone
 
 ## 5. User CRUD
 
-- [Github URL = User CRUD](https://github.com/ohbyeongmin/ouber-eats-backend/commit/0c5258b1fc8b54c3160935207b10ee03f682cfbd)
+- [Github URL - User CRUD](https://github.com/ohbyeongmin/ouber-eats-backend/commit/0c5258b1fc8b54c3160935207b10ee03f682cfbd)
 
 ## 6. User Authentication
+
+- [Github URL - User Authentication](https://github.com/ohbyeongmin/ouber-eats-backend/commit/9c5d9968d0ffccb6f468c6e849a783e1df682f31)
 
 - 우선 header 에 token을 보낸다.
 - header는 http 기술에 쓰이는 것이다.
@@ -195,3 +198,11 @@ The Backend of Ouber Eats Clone
 - @BeforeUpdate() hook 이 먹히지 않는다.
 - 해결 : user를 찾고 수정한 뒤 save() 메소드를 사용 했다.
 - save() 메소드는 데이터가 존재 할 경우 업데이트 해주고 존재 안하면 생성 후 추가 해준다.
+
+---
+
+## 7. Email Verification
+
+- verification entity 를 만들어 준다.
+- verification entity 는 User entity 와 One-to-One 관계다.
+- verification entity 에 JoinColumn 을 설정 해줘서 verification entity에서 접근 가능하게 한다.
