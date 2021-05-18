@@ -1,8 +1,12 @@
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
+import { User } from 'src/users/entities/user.entity';
 import { Repository } from 'typeorm';
-import { CreateRestaurantDto } from './dtos/create-restaurant.dto';
-import { UpdateRestaurantDto } from './dtos/update-restaurant.dto';
+import {
+  CreateRestaurantInput,
+  CreateRestaurantOutput,
+} from './dtos/create-restaurant.dto';
+import { Category } from './entities/category.entity';
 import { Restaurant } from './entities/restaurant.entity';
 
 @Injectable()
@@ -10,21 +14,37 @@ export class RestaurantService {
   constructor(
     @InjectRepository(Restaurant)
     private readonly retaurants: Repository<Restaurant>,
+    @InjectRepository(Category)
+    private readonly categories: Repository<Category>,
   ) {}
-  getAll(): Promise<Restaurant[]> {
-    return this.retaurants.find();
-  }
-  createRestaurant(
-    createRestaurantDto: CreateRestaurantDto,
-  ): Promise<Restaurant> {
-    // 이 방식은 굉장히 귀찮고 지루함
-    // const newRestaurant = new Restaurant();
-    // newRestaurant.name = createRestaurantDto.name;
-    const newRestaurant = this.retaurants.create(createRestaurantDto);
-    return this.retaurants.save(newRestaurant);
-  }
 
-  updateRestaurant({ id, data }: UpdateRestaurantDto) {
-    return this.retaurants.update(id, { ...data });
+  async createRestaurant(
+    owner: User,
+    createRestaurantInput: CreateRestaurantInput,
+  ): Promise<CreateRestaurantOutput> {
+    try {
+      const newRestaurant = this.retaurants.create(createRestaurantInput);
+      newRestaurant.owner = owner;
+      const categoryName = createRestaurantInput.categoryName
+        .trim()
+        .toLowerCase();
+      const categorySlug = categoryName.replace(/ /g, '-');
+      let category = await this.categories.findOne({ slug: categorySlug });
+      if (!category) {
+        category = await this.categories.save(
+          this.categories.create({ slug: categorySlug, name: categoryName }),
+        );
+      }
+      newRestaurant.category = category;
+      await this.retaurants.save(newRestaurant);
+      return {
+        ok: true,
+      };
+    } catch (error) {
+      return {
+        ok: false,
+        error: 'Could not create restaurant',
+      };
+    }
   }
 }
